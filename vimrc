@@ -43,10 +43,12 @@ imap <right> <nop><Paste>
 nmap <Leader><Leader> <c-^>
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprev!<CR><Paste>
+" vim-plugged plugins, ensure this is installed
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/unite.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }

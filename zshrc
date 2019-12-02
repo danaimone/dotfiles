@@ -1,22 +1,53 @@
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-ZSH_THEME="avit"
-CASE_SENSITIVE="false"
-autoload colors zsh/terminfo
-colors
-source $ZSH/oh-my-zsh.sh
-plugins=(git)
-if [ "$TMUX" = "" ]; then tmux; fi
-setopt auto_cd
-setopt correctall
-alias git status='nocorrect git status'
-if [[ ! -f ~/.antigen.zsh ]]; then
-  curl https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen.zsh
-fi
+# Load NVM
+alias loadnvm=".usr/local/opt/nvm/nvm.sh"
+
+# Linux antigen file
 source /usr/local/share/antigen/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
+
+# Linking z
+source ~/z.sh
+
+# Disabling <<< NORMAL mode indicator
+export RPS1="%{$reset_color%}"
+
+# Loading oh-my-zsh's library
+antigen use oh-my-zsh
+
+# Load theme
+antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+
+# Bundles from default repo
 antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+antigen bundle common-aliases
+antigen bundle compleat
+antigen bundle git-extras
+antigen bundle git-flow
+antigen bundle npm
+antigen bundle web-search
+antigen bundle z
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
+
+# Syntax highlighting bundle
+
+# Done loading bundles
 antigen apply
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-. `brew --prefix`/etc/profile.d/z.sh
+
+spaceship_vi_mode_enable
+
+#Setup zsh-autosuggestions
+source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Load custom aliases
+[[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
+
+[[ -s /Users/danaimone/.autojump/etc/profile.d/autojump.sh ]] && source /Users/danaimone/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+
+# Setting up CTRL+R functionality
+bindkey -v
+bindkey '^R' history-incremental-search-backward
