@@ -40,7 +40,7 @@ antigen apply
 spaceship_vi_mode_enable
 
 #Setup zsh-autosuggestions
-source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
