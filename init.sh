@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "-= Installing System Dependencies =-"
-apt install zsh tmux neovim python3 
-apt install zsh-antigen
-apt install hyper
+sudo apt-get install aptitude
+sudo aptitude install zsh tmux neovim/neovim/neovim python3 ag reattach-to-user-namespace
+sudo aptitude install zsh-antigen hyper
+
 echo "-= Installing Fonts =-"
-brew tap caskroom/fonts
-brew cask install font-fira-code
+sudo aptitude install fonts-firacode
 
 echo "-= Installing z.sh =-"
 curl https://raw.githubusercontent.com/rupa/z/master/z.sh > ~/z.sh
