@@ -1,8 +1,5 @@
 # Linux antigen file
-source ~/antigen.zsh
-
-# Linking z
-source ~/z.sh
+source /usr/share/zsh-antigen/antigen.zsh
 
 # Disabling <<< NORMAL mode indicator
 export RPS1="%{$reset_color%}"

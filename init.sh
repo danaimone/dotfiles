@@ -1,10 +1,8 @@
 #!/bin/bash
 echo "-= Installing System Dependencies =-"
-brew install zsh tmux neovim/neovim/neovim python3 ag reattach-to-user-namespace
-brew install antigen
-brew tap caskroom/cask
-brew cask install hyper
-
+apt install zsh tmux neovim python3 
+apt install zsh-antigen
+apt install hyper
 echo "-= Installing Fonts =-"
 brew tap caskroom/fonts
 brew cask install font-fira-code
@@ -19,9 +17,6 @@ echo "-= Upgrading Neovim with Python and Package Manager =-"
 pip3 install neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-echo "-= Setting Zsh as default shell =-"
-chsh -s /usr/local/bin/zsh
 
 echo "-= Removing any existing configs =-"
 rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.tmux ~/.tmux.conf ~/.config/nvim 2> /dev/null
