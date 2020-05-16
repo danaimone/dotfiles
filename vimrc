@@ -40,6 +40,9 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop><Paste>
+" Better escape key
+imap jk <Esc>
+imap kj <Esc>
 nmap <Leader><Leader> <c-^>
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprev!<CR><Paste>

@@ -1,12 +1,16 @@
 #!/bin/bash
 echo "-= Installing System Dependencies =-"
 brew install zsh tmux neovim/neovim/neovim python3 ag reattach-to-user-namespace
+brew install antigen
 brew tap caskroom/cask
-brew cask install iterm2
+brew cask install hyper
 
 echo "-= Installing Fonts =-"
 brew tap caskroom/fonts
 brew cask install font-fira-code
+
+echo "-= Installing z.sh =-"
+curl https://raw.githubusercontent.com/rupa/z/master/z.sh > ~/z.sh
 
 echo "-= Assigning Zsh as Default Shell =-"
 chsh -s $(which zsh)

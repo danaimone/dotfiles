@@ -1,8 +1,5 @@
-# Load NVM
-alias loadnvm=".usr/local/opt/nvm/nvm.sh"
-
 # Linux antigen file
-source /usr/local/share/antigen/antigen.zsh
+source ~/antigen.zsh
 
 # Linking z
 source ~/z.sh
@@ -27,9 +24,11 @@ antigen bundle compleat
 antigen bundle git-extras
 antigen bundle git-flow
 antigen bundle npm
+antigen bundle tmux
 antigen bundle web-search
 antigen bundle z
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 
 # Syntax highlighting bundle
@@ -38,9 +37,6 @@ antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-se
 antigen apply
 
 spaceship_vi_mode_enable
-
-#Setup zsh-autosuggestions
-source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
@@ -51,3 +47,6 @@ autoload -U compinit && compinit -u
 # Setting up CTRL+R functionality
 bindkey -v
 bindkey '^R' history-incremental-search-backward
+
+# Launch tmux
+ZSH_TMUX_AUTOSTART=true
