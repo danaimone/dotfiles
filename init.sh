@@ -8,6 +8,7 @@ sudo aptitude install python3
 sudo aptitude install ag 
 sudo aptitude install python3
 sudo aptitude install python3-pip
+sudo aptitude install screenfetch
 sudo aptitude install reattach-to-user-namespace
 wget -q -O ~/.antigen.zsh git.io/antigen
 sudo aptitude install hyper
@@ -37,6 +38,7 @@ mkdir -p ~/.cconfig ~/.config/nvim
 
 echo "-= Symlinking new configs =-"
 ln -s ~/dotfiles/zshrc ~/.zshrc
+ln -s ~/dotfiles/bashrc ~/.bashrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
 ln -s ~/dotfiles/aliases ~/.bash_aliases
