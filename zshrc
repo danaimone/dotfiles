@@ -43,6 +43,8 @@ alias v=nvim
 [[ -s /Users/danaimone/.autojump/etc/profile.d/autojump.sh ]] && source /Users/danaimone/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
+export GPG_TTY=$(tty)
+
 # Setting up CTRL+R functionality
 bindkey -v
 bindkey '^R' history-incremental-search-backward
