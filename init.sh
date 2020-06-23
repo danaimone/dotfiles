@@ -1,8 +1,16 @@
 #!/bin/bash
 echo "-= Installing System Dependencies =-"
 sudo apt-get install aptitude
-sudo aptitude install zsh tmux neovim/neovim/neovim python3 ag reattach-to-user-namespace
-sudo aptitude install zsh-antigen hyper
+sudo aptitude install zsh 
+sudo aptitude install tmux 
+sudo aptitude install neovim 
+sudo aptitude install python3 
+sudo aptitude install ag 
+sudo aptitude install python3
+sudo aptitude install python3-pip
+sudo aptitude install reattach-to-user-namespace
+wget -q -O ~/.antigen.zsh git.io/antigen
+sudo aptitude install hyper
 
 echo "-= Installing Fonts =-"
 sudo aptitude install fonts-firacode
@@ -31,5 +39,9 @@ echo "-= Symlinking new configs =-"
 ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
+ln -s ~/dotfiles/aliases ~/.bash_aliases
+
+echo "-= Fixing gpg for WSL =-"
+export GPG_TTY=$(tty)
 
 echo "-= Please log out and back in to see changes =-"

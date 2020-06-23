@@ -1,5 +1,5 @@
 # Linux antigen file
-source /usr/share/zsh-antigen/antigen.zsh
+source "$HOME/.antigen.zsh"
 
 # Disabling <<< NORMAL mode indicator
 export RPS1="%{$reset_color%}"
@@ -37,6 +37,8 @@ spaceship_vi_mode_enable
 
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
+
+alias v=nvim
 
 [[ -s /Users/danaimone/.autojump/etc/profile.d/autojump.sh ]] && source /Users/danaimone/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
