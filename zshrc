@@ -51,3 +51,7 @@ bindkey '^R' history-incremental-search-backward
 
 # Launch tmux
 ZSH_TMUX_AUTOSTART=true
+
+export PATH="/home/danaimone/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
