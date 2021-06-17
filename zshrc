@@ -1,5 +1,5 @@
-# Linux antigen file
-source ~/antigen.zsh
+# Mac antigen file
+source $(brew --prefix)/share/antigen/antigen.zsh
 
 # Linking z
 source ~/z.sh
