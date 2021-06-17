@@ -1,12 +1,13 @@
 #!/bin/bash
 echo "-= Installing System Dependencies =-"
-brew install zsh tmux neovim/neovim/neovim python3 ag reattach-to-user-namespace
+brew install zsh tmux neovim/neovim/neovim python3 ag 
 brew install antigen
-brew tap caskroom/cask
+brew tap homebrew/cask
 brew cask install hyper
+brew install reattach-to-user-namespace
 
 echo "-= Installing Fonts =-"
-brew tap caskroom/fonts
+brew tap homebrew/fonts
 brew cask install font-fira-code
 
 echo "-= Installing z.sh =-"
