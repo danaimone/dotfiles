@@ -34,8 +34,9 @@ echo "-= Creating necessary directories =-"
 mkdir -p ~/.cconfig ~/.config/nvim
 
 echo "-= Symlinking new configs =-"
-ln -s ~/dotfiles/zshrc ~/.zshrc
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
+ln -s "$(PWD)/zshrc" ~/.zshrc
+ln -s "$(PWD)/tmux.conf" ~/.tmux.conf
+ln -s "$(PWD)/vimrc" ~/.config/nvim/init.vim
+ln -s "$(PWD)/ideavimrc" ~/.ideavimrc
 
 echo "-= Please log out and back in to see changes =-"
