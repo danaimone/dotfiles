@@ -10,14 +10,9 @@ export RPS1="%{$reset_color%}"
 # Loading oh-my-zsh's library
 antigen use oh-my-zsh
 
-# Load theme
-antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
-
 # Bundles from default repo
 antigen bundle git
-antigen bundle heroku
 antigen bundle pip
-antigen bundle lein
 antigen bundle command-not-found
 antigen bundle common-aliases
 antigen bundle compleat
@@ -31,22 +26,32 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 
-# Syntax highlighting bundle
-
 # Done loading bundles
 antigen apply
-
-spaceship_vi_mode_enable
 
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
-[[ -s /Users/danaimone/.autojump/etc/profile.d/autojump.sh ]] && source /Users/danaimone/.autojump/etc/profile.d/autojump.sh
+# Make sure autojump is installed
+[[ -s /Users/$HOME/.autojump/etc/profile.d/autojump.sh ]] && source /Users/$HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
 # Setting up CTRL+R functionality
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+alias v=nvim
+
 # Launch tmux
 ZSH_TMUX_AUTOSTART=true
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+cdls() { cd "$@" && ls; }
+dka() { docker kill $(docker ps -q) }
+
+# Load theme
+eval "$(starship init zsh)"
+
