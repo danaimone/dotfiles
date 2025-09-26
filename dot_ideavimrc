@@ -1,0 +1,51 @@
+let mapleader = " "
+
+" Enable hybrid line numbers
+set number
+set relativenumber
+
+" Set a good search experience
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" Enable native vim features
+set ideajoin
+set ideastatusicon=gray
+
+" Set space as leader
+let mapleader = " "
+
+" Clipboard operations
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+
+" Quick escape
+inoremap jk <Esc>
+
+" Navigation improvements
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
+" Clear search highlighting
+nnoremap <leader>h :nohl<CR>
+
+" Formatting
+nnoremap <leader>f :action ReformatCode<CR>
+
+" Go to definition
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
+
+" File navigation
+nnoremap <leader>e :action ActivateProjectToolWindow<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fs :action FindInPath<CR>
+
+" Comments
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>

@@ -1,0 +1,6 @@
+[data]
+    name = "danaimone"
+    email = "hello@danaimone.com"
+
+[diff]
+    pager = "less -R"
