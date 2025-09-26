@@ -1,4 +1,4 @@
-theme="catppuccin-mocha"
+theme="catppuccin-mocha.conf"
 font-size=15
 font-family="Hack Nerd Font Mono"
 window-padding-x=5
