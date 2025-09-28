@@ -13,26 +13,18 @@ return {
     local wk = require("which-key")
     wk.setup()
 
-    -- Register your custom keymaps with descriptions
-    wk.register({
-      ["<C-p>"] = { "Find Files" },
-      ["<C-n>"] = { "Toggle File Tree" },
-      ["K"] = { "Hover Documentation" },
-      ["<leader>"] = {
-        f = {
-          name = "Find",
-          g = { "Live Grep" },
-        },
-        g = {
-          name = "Go/Git",
-          d = { "Go to Definition" },
-          f = { "Format Code" },
-        },
-        c = {
-          name = "Code",
-          a = { "Code Actions" },
-        },
-      },
+    -- Register your custom keymaps with modern spec
+    wk.add({
+      { "<C-p>", desc = "Find Files" },
+      { "<C-n>", desc = "Toggle File Tree" },
+      { "K", desc = "Hover Documentation" },
+      { "<leader>f", group = "Find" },
+      { "<leader>fg", desc = "Live Grep" },
+      { "<leader>g", group = "Go/Git" },
+      { "<leader>gd", desc = "Go to Definition" },
+      { "<leader>gf", desc = "Format Code" },
+      { "<leader>c", group = "Code" },
+      { "<leader>ca", desc = "Code Actions" },
     })
   end,
 }
