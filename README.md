@@ -92,6 +92,36 @@ git pull
 chezmoi apply
 ```
 
+## 🎮 Neovim Plugin Shortcuts
+
+### Leader Key: `Space`
+
+### Plugin Shortcuts
+| Shortcut | Action | Plugin |
+|----------|--------|---------|
+| `<C-p>` | Find files | Telescope |
+| `<leader>fg` | Live grep (search in files) | Telescope |
+| `<C-n>` | Toggle file tree | Neo-tree |
+| `K` | Show hover documentation | LSP |
+| `<leader>gd` | Go to definition | LSP |
+| `<leader>ca` | Code actions | LSP |
+| `<leader>gf` | Format code | none-ls |
+
+### Telescope (Fuzzy Finder)
+- `<C-p>` - Find files quickly
+- `<leader>fg` - Search text across all files
+- `<Esc>` - Close telescope (while in insert mode)
+
+### What Each Plugin Does
+- **Telescope**: Fuzzy finder for files and text search
+- **Neo-tree**: File explorer sidebar (shows hidden files)
+- **LSP**: Language server support for Lua, TypeScript, JavaScript, HTML
+- **none-ls**: Code formatting with Prettier and Stylua
+- **nvim-cmp**: Auto-completion with snippets
+- **Catppuccin**: Pretty Mocha theme
+- **Alpha**: Nice startup screen
+- **Lualine**: Status line at bottom
+
 ---
 
 *Built with ❤️ using chezmoi, Homebrew, starship, and modern CLI tools*
