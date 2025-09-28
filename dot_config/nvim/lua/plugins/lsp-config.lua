@@ -10,7 +10,7 @@ return {
     dependencies = { "mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "typescript-language-server", "html" },
+        ensure_installed = { "lua_ls", "tsserver", "html" },
         automatic_installation = true,
       })
     end,
@@ -25,7 +25,7 @@ return {
 
       -- Setup servers
       lspconfig.lua_ls.setup({ capabilities = capabilities })
-      lspconfig.ts_ls.setup({ capabilities = capabilities })
+      lspconfig.tsserver.setup({ capabilities = capabilities })
       lspconfig.html.setup({ capabilities = capabilities })
 
       -- Key mappings
