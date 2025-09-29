@@ -1,15 +1,24 @@
 # Modern zsh configuration
 # Based on work-config setup, optimized for macOS development
 
+# Initialize tools
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+# Environment variables
+export EDITOR="nvim"
+export SUDO_EDITOR="$EDITOR"
+export PGHOST="/var/run/postgresql"
+
+# Path configuration
+export PATH=$PATH:/usr/local/go/bin
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$HOME/.local/share/omarchy/bin:$PATH"
+
 # History configuration
-HISTFILE=~/.zsh_history
+HISTFILE=~/.history
 HISTSIZE=10000
-SAVEHIST=10000
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_SAVE_NO_DUPS
-setopt SHARE_HISTORY
+SAVEHIST=50000
+setopt inc_append_history
 
 # Enable completion
 autoload -U compinit && compinit -u
@@ -58,19 +67,40 @@ alias dka='docker kill $(docker ps -q) 2>/dev/null || echo "No containers to kil
 cdls() { cd "$@" && ls; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
-# FZF configuration
-if command -v fzf &> /dev/null; then
-    eval "$(fzf --zsh)"
-    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
-fi
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
-# Zoxide (smart cd)
-if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
-    alias cd="z"
-fi
+# Mise activation
+eval "$(~/.local/bin/mise activate zsh)"
+
+# Custom tmux session function
+new_tmux () {
+  session_dir=$(zoxide query --list | fzf)
+  session_name=$(basename "$session_dir")
+
+  if tmux has-session -t $session_name 2>/dev/null; then
+    if [ -n "$TMUX" ]; then
+      tmux switch-client -t "$session_name"
+    else
+      tmux attach -t "$session_name"
+    fi
+    notification="tmux attached to $session_name"
+  else
+    if [ -n "$TMUX" ]; then
+      tmux new-session -d -c "$session_dir" -s "$session_name" && tmux switch-client -t "$session_name"
+      notification="new tmux session INSIDE TMUX: $session_name"
+    else
+      tmux new-session -c "$session_dir" -s "$session_name"
+      notification="new tmux session: $session_name"
+    fi
+  fi
+
+  if [ -s "$session_name" ]; then
+    notify-send "$notification"
+  fi
+}
+
+alias tm=new_tmux
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
@@ -113,7 +143,3 @@ if command -v brew &> /dev/null; then
     fi
 fi
 
-# Initialize starship prompt (keep this at the end)
-if command -v starship &> /dev/null; then
-    eval "$(starship init zsh)"
-fi
