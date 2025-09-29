@@ -71,7 +71,9 @@ mkcd() { mkdir -p "$@" && cd "$@"; }
 source <(fzf --zsh)
 
 # Mise activation
-eval "$(~/.local/bin/mise activate zsh)"
+if [[ -f ~/.local/bin/mise ]]; then
+  eval "$(~/.local/bin/mise activate zsh)"
+fi
 
 # Custom tmux session function
 new_tmux () {
