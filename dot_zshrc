@@ -145,3 +145,8 @@ if command -v brew &> /dev/null; then
     fi
 fi
 
+# Auto-start tmux for interactive shells
+if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && command -v tmux &> /dev/null; then
+    tmux new-session -A -s main
+fi
+
