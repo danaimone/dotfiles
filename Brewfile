@@ -3,6 +3,7 @@ brew "zsh"
 brew "tmux"
 brew "neovim"
 brew "git"
+brew "gnupg"
 brew "curl"
 brew "wget"
 
@@ -15,10 +16,12 @@ brew "eza"
 brew "fzf"
 brew "zoxide"
 brew "chezmoi"
+brew "lazygit"
 
 # Zsh plugins
 brew "zsh-syntax-highlighting"
 brew "zsh-autosuggestions"
+brew "zsh-history-substring-search"
 
 # Language support
 brew "node"
