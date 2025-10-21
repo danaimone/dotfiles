@@ -43,9 +43,21 @@ fi
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Initialize and apply dotfiles with chezmoi
-echo "📋 Initializing and applying dotfiles..."
-chezmoi init --apply "$SCRIPT_DIR"
+# Set up chezmoi to use this repo directly via symlink
+echo "📋 Setting up chezmoi to use dotfiles repository..."
+if [ -d ~/.local/share/chezmoi ] && [ ! -L ~/.local/share/chezmoi ]; then
+    echo "Removing existing chezmoi directory..."
+    rm -rf ~/.local/share/chezmoi
+fi
+
+if [ ! -e ~/.local/share/chezmoi ]; then
+    echo "Creating symlink from chezmoi source to dotfiles repository..."
+    ln -s "$SCRIPT_DIR" ~/.local/share/chezmoi
+fi
+
+# Apply dotfiles with chezmoi
+echo "📋 Applying dotfiles..."
+chezmoi apply
 
 # Install vim-plug for neovim
 echo "🔌 Setting up Neovim plugins..."
