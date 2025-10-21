@@ -23,6 +23,13 @@ if ! command -v brew &> /dev/null; then
     fi
 fi
 
+# Ensure Homebrew is in PATH (for both fresh installs and existing ones)
+if [[ $(uname -m) == "arm64" ]] && [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # Install dependencies from Brewfile
 echo "🍺 Installing packages from Brewfile..."
 brew bundle --file="$(dirname "$0")/Brewfile"
@@ -36,23 +43,9 @@ fi
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Initialize chezmoi with our dotfiles
-echo "⚙️  Setting up dotfiles with chezmoi..."
-if [ ! -d ~/.local/share/chezmoi ]; then
-    chezmoi init --source="$SCRIPT_DIR"
-else
-    echo "📁 Chezmoi already initialized"
-fi
-
-# Apply the dotfiles
-echo "📋 Applying dotfiles..."
-chezmoi apply
-
-# Set zsh as default shell if not already set
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-    echo "🐚 Setting zsh as default shell..."
-    chsh -s $(which zsh)
-fi
+# Initialize and apply dotfiles with chezmoi
+echo "📋 Initializing and applying dotfiles..."
+chezmoi init --apply "$SCRIPT_DIR"
 
 # Install vim-plug for neovim
 echo "🔌 Setting up Neovim plugins..."
@@ -66,6 +59,10 @@ echo "🔧 Setting up Tmux Plugin Manager..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
+
+# Install tmux plugins automatically
+echo "📦 Installing tmux plugins..."
+~/.tmux/plugins/tpm/bin/install_plugins
 
 echo "✅ Setup complete!"
 echo ""
