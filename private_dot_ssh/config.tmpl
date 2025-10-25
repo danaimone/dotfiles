@@ -1,0 +1,36 @@
+{{- if eq .chezmoi.os "darwin" -}}
+# SSH Configuration for macOS
+# Managed by chezmoi - edit via: chezmoi edit ~/.ssh/config
+
+# 1Password SSH Agent integration
+Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    AddKeysToAgent yes
+    UseKeychain yes
+
+# Leaseweb Server
+# TODO: Update with your actual hostname/IP, user, and any specific SSH key settings
+Host leaseweb
+    HostName your-leaseweb-hostname-or-ip
+    User your-username
+    # Uncomment and configure if you need specific settings:
+    # Port 22
+    # ForwardAgent yes
+
+# Homelab Server
+# TODO: Update with your actual hostname/IP, user, and any specific SSH key settings
+Host homelab
+    HostName your-homelab-hostname-or-ip
+    User your-username
+    # Uncomment and configure if you need specific settings:
+    # Port 22
+    # ForwardAgent yes
+
+# Add more hosts as needed below
+# Example:
+# Host example
+#     HostName example.com
+#     User your-username
+#     Port 22
+
+{{ end -}}

@@ -1,0 +1,27 @@
+# Ignore cache and temporary files that shouldn't be managed by chezmoi
+
+# Oh My Zsh cache directories
+.oh-my-zsh/cache/**
+.oh-my-zsh/log/**
+
+# Tmux plugin manager generated files
+.tmux/plugins/**/doc/
+.tmux/plugins/**/.git/
+
+# Neovim generated files
+.local/share/nvim/lazy/
+.local/share/nvim/mason/
+.local/share/nvim/swap/
+.local/share/nvim/shada/
+.local/share/nvim/undo/
+
+# SSH known hosts (machine-specific)
+.ssh/known_hosts
+.ssh/known_hosts.old
+
+# Zsh history (machine-specific)
+.history
+.zsh_history
+
+# Other cache directories
+.cache/

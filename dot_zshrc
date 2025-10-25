@@ -130,31 +130,30 @@ export PATH="$HOME/.local/bin:$PATH"
 # Load custom aliases if they exist
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
-# Load zsh plugins for better experience
-if command -v brew &> /dev/null; then
-    # History substring search (must be loaded before key bindings)
-    if [ -f $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
-        source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-    fi
+# Load zsh plugins (managed by chezmoi via .chezmoiexternal.toml)
+# Syntax highlighting
+if [ -f ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
-    # Syntax highlighting
-    if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-        source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    fi
+# Autosuggestions
+if [ -f ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
-    # Autosuggestions
-    if [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-        source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    fi
+# History substring search (bind keys immediately after sourcing)
+if [ -f ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
+    source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+    # Bind arrow keys for history substring search
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    bindkey '^P' history-substring-search-up
+    bindkey '^N' history-substring-search-down
 fi
 
 # Vi mode with better key bindings
 bindkey -v
 bindkey '^R' history-incremental-search-backward
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
 
 # Auto-start tmux for interactive shells
 if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && command -v tmux &> /dev/null; then
