@@ -1,0 +1,74 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -e
+
+echo "📦 Installing/updating Homebrew packages..."
+
+# Install Homebrew if not present
+if ! command -v brew &> /dev/null; then
+    echo "📦 Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Add Homebrew to PATH for Apple Silicon Macs
+    if [[ $(uname -m) == "arm64" ]]; then
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+fi
+
+# Ensure Homebrew is in PATH
+if [[ $(uname -m) == "arm64" ]] && [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# Run brew bundle with embedded Brewfile
+brew bundle --file=/dev/stdin <<EOF
+# Core development tools
+brew "zsh"
+brew "tmux"
+brew "neovim"
+brew "git"
+brew "gnupg"
+brew "curl"
+brew "wget"
+
+# Modern CLI tools
+brew "starship"
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "eza"
+brew "fzf"
+brew "glow"
+brew "zoxide"
+brew "chezmoi"
+brew "lazygit"
+
+# Language support
+brew "node"
+brew "python3"
+brew "go"
+brew "rust"
+
+# Terminal and fonts
+cask "ghostty"
+cask "font-hack-nerd-font"
+cask "font-fira-code-nerd-font"
+
+# 1Password for password management and SSH agent
+cask "1password"
+cask "1password-cli"
+
+# Optional but useful
+brew "htop"
+brew "tree"
+brew "jq"
+brew "gh"
+EOF
+
+echo "✅ Homebrew packages installed/updated successfully!"
+
+{{ end -}}
