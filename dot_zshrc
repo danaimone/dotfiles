@@ -1,6 +1,11 @@
 # Modern zsh configuration
 # Based on work-config setup, optimized for macOS development
 
+# Show system info on new shell (only if not in tmux and fastfetch is available)
+if [[ -z "$TMUX" ]] && command -v fastfetch &> /dev/null; then
+    fastfetch
+fi
+
 # Initialize tools
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
