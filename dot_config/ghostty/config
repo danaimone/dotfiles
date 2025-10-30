@@ -1,6 +1,5 @@
 theme = catppuccin-mocha.conf
 font-size = 14
 background-opacity = 0.95
-background-opacity-cells = true
 gtk-titlebar = false
 
