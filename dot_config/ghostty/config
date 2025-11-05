@@ -1,5 +1,10 @@
 theme = catppuccin-mocha.conf
 font-size = 14
-background-opacity = 0.95
-gtk-titlebar = false
-
+background-opacity = 0.7
+background-blur = 20
+macos-titlebar-style = hidden
+mouse-hide-while-typing = true
+window-padding-x = 10
+window-padding-y = 10
+shell-integration-features = ssh-terminfo
+shell-integration-features = ssh-env
