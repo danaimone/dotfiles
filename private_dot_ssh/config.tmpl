@@ -9,22 +9,18 @@ Host *
     UseKeychain yes
 
 # Leaseweb Server
-# TODO: Update with your actual hostname/IP, user, and any specific SSH key settings
 Host leaseweb
-    HostName your-leaseweb-hostname-or-ip
-    User your-username
-    # Uncomment and configure if you need specific settings:
-    # Port 22
-    # ForwardAgent yes
+    HostName {{ onepasswordRead "op://Personal/Leaseweb SSH Key/IP" }}
+    User {{ onepasswordRead "op://Personal/Leaseweb SSH Key/username" }}
+    Port {{ onepasswordRead "op://Personal/Leaseweb SSH Key/SSH Port" }}
+    ForwardAgent yes
 
-# Homelab Server
-# TODO: Update with your actual hostname/IP, user, and any specific SSH key settings
-Host homelab
-    HostName your-homelab-hostname-or-ip
-    User your-username
-    # Uncomment and configure if you need specific settings:
-    # Port 22
-    # ForwardAgent yes
+# Homelab/Proxmox Server
+Host homelab proxmox
+    HostName {{ onepasswordRead "op://Personal/Proxmox SSH Key/IP" }}
+    User {{ onepasswordRead "op://Personal/Proxmox SSH Key/username" }}
+    Port {{ onepasswordRead "op://Personal/Proxmox SSH Key/SSH Port" }}
+    ForwardAgent yes
 
 # Add more hosts as needed below
 # Example:
