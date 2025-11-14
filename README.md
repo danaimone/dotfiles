@@ -114,16 +114,39 @@ The setup automatically:
 
 ## 🔧 Post-Installation Steps
 
-### 1. Configure SSH Hosts
+### 1. Enable 1Password CLI Integration
 
-Edit your SSH config to add your servers:
+The SSH config pulls connection details from 1Password automatically. Enable CLI integration:
+
+1. Open 1Password desktop app
+2. Go to **Settings → Developer**
+3. Enable **"Integrate with 1Password CLI"**
+4. Enable **"Use the SSH agent"**
+
+The setup script will check this and provide instructions if needed.
+
+### 2. Configure SSH Hosts in 1Password
+
+SSH connection details are stored in 1Password SSH Key items. To add your servers:
+
+1. Create an SSH Key item in 1Password (or use existing)
+2. Add these custom fields:
+   - **IP** (text): Server IP address
+   - **username** (text): SSH username
+   - **SSH Port** (text): SSH port number
+3. Update the SSH config template to reference your 1Password items:
 ```bash
 chezmoi edit ~/.ssh/config
-# Update the leaseweb and homelab host entries with your actual details
+# Add host entries that reference your 1Password items
+# Example: {{ onepasswordRead "op://Personal/Your SSH Key/IP" }}
 chezmoi apply
 ```
 
-### 2. Verify 1Password SSH Agent
+Pre-configured hosts (if you have matching 1Password items):
+- `ssh leaseweb` - Leaseweb dedicated server
+- `ssh homelab` or `ssh proxmox` - Home Proxmox server
+
+### 3. Verify 1Password SSH Agent
 
 Test that SSH agent is working:
 ```bash
@@ -131,13 +154,13 @@ Test that SSH agent is working:
 ssh-add -l
 ```
 
-### 3. Set Zsh as Default Shell (Linux/WSL)
+### 4. Set Zsh as Default Shell (Linux/WSL)
 
 ```bash
 chsh -s $(which zsh)
 ```
 
-### 4. Restart Terminal
+### 5. Restart Terminal
 
 ```bash
 # macOS/Linux/WSL
@@ -146,7 +169,7 @@ exec zsh
 # Windows: Close and reopen Windows Terminal
 ```
 
-### 5. Install Neovim Plugins
+### 6. Install Neovim Plugins
 
 Plugins auto-install on first Neovim launch:
 ```bash
@@ -154,7 +177,7 @@ nvim
 # Wait for lazy.nvim to install plugins
 ```
 
-### 6. Install Tmux Plugins
+### 7. Install Tmux Plugins
 
 Inside tmux:
 ```
