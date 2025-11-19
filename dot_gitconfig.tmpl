@@ -1,6 +1,16 @@
 [user]
     name = Dan Aimone
     email = 30274286+danaimone@users.noreply.github.com
+    signingkey = {{ onepasswordRead "op://Personal/SSH Key Github/public key" }}
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+    gpgsign = true
 
 [include]
     path = ~/.config/delta/themes/catppuccin.gitconfig
