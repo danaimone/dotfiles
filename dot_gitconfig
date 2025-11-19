@@ -1,0 +1,19 @@
+[user]
+    name = Dan Aimone
+    email = 30274286+danaimone@users.noreply.github.com
+
+[include]
+    path = ~/.config/delta/themes/catppuccin.gitconfig
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    features = catppuccin-mocha
+
+[merge]
+    conflictStyle = zdiff3
