@@ -8,6 +8,11 @@ Host *
     AddKeysToAgent yes
     UseKeychain yes
 
+# GitHub
+Host github.com
+    HostName github.com
+    User git
+
 # Leaseweb Server
 Host leaseweb
     HostName {{ onepasswordRead "op://Personal/Leaseweb SSH Key/IP" }}

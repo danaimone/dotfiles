@@ -15,6 +15,7 @@ export EDITOR="nvim"
 export SUDO_EDITOR="$EDITOR"
 export PGHOST="/var/run/postgresql"
 export XDG_CONFIG_HOME="$HOME/.config"
+export OP_ACCOUNT="my.1password.com"
 
 # Path configuration
 export PATH=$PATH:/usr/local/go/bin
