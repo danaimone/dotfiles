@@ -13,13 +13,6 @@ Host github.com
     HostName github.com
     User git
 
-# Leaseweb Server
-Host leaseweb
-    HostName {{ onepasswordRead "op://Personal/Leaseweb SSH Key/IP" }}
-    User {{ onepasswordRead "op://Personal/Leaseweb SSH Key/username" }}
-    Port {{ onepasswordRead "op://Personal/Leaseweb SSH Key/SSH Port" }}
-    ForwardAgent yes
-
 # Homelab/Proxmox Server
 Host homelab proxmox
     HostName {{ onepasswordRead "op://Personal/Proxmox SSH Key/IP" }}
