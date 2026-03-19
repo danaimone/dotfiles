@@ -1,7 +1,11 @@
 [user]
     name = Dan Aimone
     email = 30274286+danaimone@users.noreply.github.com
+{{- if lookPath "op" }}
     signingkey = {{ onepasswordRead "op://Personal/SSH Key Github/public key" }}
+{{- else }}
+    # signingkey will be populated after 1Password CLI is set up — re-run: chezmoi apply
+{{- end }}
 
 [gpg]
     format = ssh
