@@ -75,6 +75,15 @@ alias dka='docker kill $(docker ps -q) 2>/dev/null || echo "No containers to kil
 cdls() { cd "$@" && ls; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
+# SSH into homelab as root, gated by 1Password auth
+homelab() {
+  if ! op whoami &>/dev/null; then
+    echo "1Password not signed in. Signing in..."
+    op signin || return 1
+  fi
+  ssh -t homelab "sudo -i"
+}
+
 # Chezmoi aliases for easy dotfile editing
 alias ce="chezmoi edit"
 alias ca="chezmoi apply"

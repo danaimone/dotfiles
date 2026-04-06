@@ -18,6 +18,8 @@ Host homelab proxmox
     HostName {{ onepasswordRead "op://Personal/Proxmox SSH Key/IP" }}
     User {{ onepasswordRead "op://Personal/Proxmox SSH Key/username" }}
     Port {{ onepasswordRead "op://Personal/Proxmox SSH Key/SSH Port" }}
+    IdentityFile ~/.ssh/id_proxmox_root
+    IdentitiesOnly yes
     ForwardAgent yes
 
 # Seedbox
