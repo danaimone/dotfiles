@@ -28,11 +28,22 @@ Host seedbox
     User {{ onepasswordRead "op://Personal/Ultra key/username" }}
     Port {{ onepasswordRead "op://Personal/Ultra key/SSH Port" }}
 
+# Ugoos CoreELEC
+Host ugoos
+    HostName {{ onepasswordRead "op://Personal/Ugoos CoreElec SSH/IP" }}
+    User {{ onepasswordRead "op://Personal/Ugoos CoreElec SSH/username" }}
+    Port {{ onepasswordRead "op://Personal/Ugoos CoreElec SSH/SSH Port" }}
+
 # Add more hosts as needed below
 # Example:
 # Host example
 #     HostName example.com
 #     User your-username
 #     Port 22
+
+# 1Password SSH bookmarks — per-host Match blocks that pin each host to
+# its bookmarked key. Placed at the end so User/Hostname from the Host
+# blocks above are already set when these Match conditions evaluate.
+Include ~/.ssh/1Password/config
 
 {{ end -}}
