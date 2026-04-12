@@ -28,11 +28,16 @@ Host seedbox
     User {{ onepasswordRead "op://Personal/Ultra key/username" }}
     Port {{ onepasswordRead "op://Personal/Ultra key/SSH Port" }}
 
-# Ugoos CoreELEC
+# Ugoos CoreELEC — multiplex aggressively so dropbear only ever sees one
+# live connection; repeated `ssh ugoos` invocations reuse it as channels.
 Host ugoos
     HostName {{ onepasswordRead "op://Personal/Ugoos CoreElec SSH/IP" }}
     User {{ onepasswordRead "op://Personal/Ugoos CoreElec SSH/username" }}
     Port {{ onepasswordRead "op://Personal/Ugoos CoreElec SSH/SSH Port" }}
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlPersist 10m
+    ServerAliveInterval 60
 
 # Add more hosts as needed below
 # Example:
