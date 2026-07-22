@@ -4,6 +4,9 @@ background-opacity = 0.9
 background-blur = 20
 macos-titlebar-style = hidden
 mouse-hide-while-typing = true
+# Always use Shift+drag for local text selection, even when a program
+# (e.g. tmux mouse mode) requests to capture mouse events.
+mouse-shift-capture = never
 window-padding-x = 10
 window-padding-y = 10
 shell-integration-features = ssh-terminfo
