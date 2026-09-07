@@ -49,6 +49,8 @@ Host ugoos
 # 1Password SSH bookmarks — per-host Match blocks that pin each host to
 # its bookmarked key. Placed at the end so User/Hostname from the Host
 # blocks above are already set when these Match conditions evaluate.
+# Reset the preceding Host scope so bookmarks apply to every host.
+Match all
 Include ~/.ssh/1Password/config
 
 {{ end -}}
