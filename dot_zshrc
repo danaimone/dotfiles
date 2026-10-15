@@ -167,6 +167,12 @@ if [ -f ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-sub
     bindkey '^N' history-substring-search-down
 fi
 
+# Turn off any mouse reporting a crashed TUI (or dropped SSH session) left
+# enabled, so hovering doesn't type escape-sequence junk at the prompt.
+_reset_mouse_reporting() { printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?1015l'; }
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _reset_mouse_reporting
+
 # Vi mode with better key bindings
 bindkey -v
 bindkey '^R' history-incremental-search-backward
