@@ -143,7 +143,6 @@ chezmoi apply
 ```
 
 Pre-configured hosts (if you have matching 1Password items):
-- `ssh leaseweb` - Leaseweb dedicated server
 - `ssh homelab` or `ssh proxmox` - Home Proxmox server
 
 ### 3. Verify 1Password SSH Agent

@@ -5,8 +5,6 @@
 # 1Password SSH Agent integration
 Host *
     IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    AddKeysToAgent yes
-    UseKeychain yes
 
 # GitHub
 Host github.com
@@ -18,9 +16,18 @@ Host homelab proxmox
     HostName {{ onepasswordRead "op://Personal/Proxmox SSH Key/IP" }}
     User {{ onepasswordRead "op://Personal/Proxmox SSH Key/username" }}
     Port {{ onepasswordRead "op://Personal/Proxmox SSH Key/SSH Port" }}
-    IdentityFile ~/.ssh/id_proxmox_root
+    IdentityFile ~/.ssh/id_proxmox_root.pub
     IdentitiesOnly yes
     ForwardAgent yes
+
+# Homelab as root — key "Homelab Root" lives in 1Password; the .pub just
+# tells the 1P agent which key to offer.
+Host homelab-root
+    HostName {{ onepasswordRead "op://Personal/Proxmox SSH Key/IP" }}
+    User root
+    Port {{ onepasswordRead "op://Personal/Proxmox SSH Key/SSH Port" }}
+    IdentityFile ~/.ssh/id_homelab_root.pub
+    IdentitiesOnly yes
 
 # Seedbox
 Host seedbox
@@ -38,6 +45,24 @@ Host ugoos
     ControlPath ~/.ssh/cm-%r@%h:%p
     ControlPersist 10m
     ServerAliveInterval 60
+
+Host mini-dan
+  Hostname {{ onepasswordRead "op://Personal/ayuhdycrp5xrxteb57eufve4wq/IP" }}
+  User danaimone
+  Port {{ onepasswordRead "op://Personal/ayuhdycrp5xrxteb57eufve4wq/port" }}
+  ForwardAgent yes
+
+Host mini-claw
+  Hostname {{ onepasswordRead "op://Personal/ayuhdycrp5xrxteb57eufve4wq/IP" }}
+  User openclaw
+  Port {{ onepasswordRead "op://Personal/ayuhdycrp5xrxteb57eufve4wq/port" }}
+  ForwardAgent yes
+
+# Hermes agent host (CT 145 on homelab)
+Host onyx
+  Hostname {{ onepasswordRead "op://Personal/u5koqupo4x756unox4eh656z2q/IP" }}
+  User root
+  Port {{ onepasswordRead "op://Personal/u5koqupo4x756unox4eh656z2q/port" }}
 
 # Add more hosts as needed below
 # Example:
