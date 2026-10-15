@@ -26,3 +26,23 @@
 
 # Other cache directories
 .cache/
+
+# Non-macOS hosts (e.g. the Proxmox box, root uses bash): only take the
+# portable bits — tmux, nvim, starship, bat, delta, lazygit. .gitconfig is
+# Mac-only too: it hardwires 1Password op-ssh-sign for commit signing.
+{{ if ne .chezmoi.os "darwin" }}
+README.md
+.gitconfig
+.claude
+.claude/**
+.config/ghostty
+.config/ghostty/**
+.config/gh
+.config/gh/**
+.ideavimrc
+.ssh
+.ssh/**
+.zshrc
+.oh-my-zsh
+.oh-my-zsh/**
+{{ end }}
